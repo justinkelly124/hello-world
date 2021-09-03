@@ -26,12 +26,23 @@ export class HelloWorld extends LitElement {
 
   __increment() {
     this.counter += 1;
+    if(this.counter > 0) {
+      document.getElementById('subtractBtn').removeAttribute('disabled');
+    }
+  }
+
+  __decrement() {
+    if(this.counter == 0) {
+      document.getElementById('subtractBtn').disabled = true;
+    }
+    this.counter -= 1;
   }
 
   render() {
     return html`
       <h2>${this.title} Nr. ${this.counter}!</h2>
       <button @click=${this.__increment}>increment</button>
+      <button id="subtractBtn" @click=${this.__decrement}>subtract</button>
     `;
   }
 }
